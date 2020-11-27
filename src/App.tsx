@@ -1,8 +1,9 @@
+import Routes from './routes/index';
 import GlobalStyles from './styles/global';
 
 const App = () => (
   <>
-    <h1>Hello World</h1>
+    <Routes />
     <GlobalStyles />
   </>
 );
