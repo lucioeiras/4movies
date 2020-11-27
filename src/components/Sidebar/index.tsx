@@ -1,30 +1,42 @@
+import { FC } from 'react';
+
 import { Link } from 'react-router-dom';
 import { FaHome, FaSearch, FaHeart } from 'react-icons/fa';
 
 import logo from '../../assets/logo.svg';
 
-import { Container } from './styles';
+import { Container, Tabs, Tab } from './styles';
 
-const Sidebar = () => {
+interface SidebarProps {
+  page?: string;
+}
+
+const Sidebar: FC<SidebarProps> = ({ page }) => {
   return (
     <Container>
       <div>
         <img src={logo} alt="4Movies" />
       </div>
 
-      <div>
-        <Link to="/">
-          <FaHome size={32} color="#FF385C" />
-        </Link>
+      <Tabs>
+        <Tab $active={page === 'home'}>
+          <Link to="/">
+            <FaHome size={32} />
+          </Link>
+        </Tab>
 
-        <Link to="/">
-          <FaSearch size={32} color="#c9c9c9" />
-        </Link>
+        <Tab $active={page === 'search'}>
+          <Link to="/search">
+            <FaSearch size={32} />
+          </Link>
+        </Tab>
 
-        <Link to="/">
-          <FaHeart size={32} color="#c9c9c9" />
-        </Link>
-      </div>
+        <Tab $active={page === 'favorites'}>
+          <Link to="/favorites">
+            <FaHeart size={32} />
+          </Link>
+        </Tab>
+      </Tabs>
     </Container>
   );
 };
