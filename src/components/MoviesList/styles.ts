@@ -35,7 +35,7 @@ export const Container = styled.section`
   }
 `;
 
-export const Movie = styled(Link)`
+export const Poster = styled(Link)`
   transition: transform 0.5s;
 
   &:hover {

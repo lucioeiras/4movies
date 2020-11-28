@@ -1,33 +1,31 @@
 import { FC } from 'react';
 import { FaStar, FaArrowRight, FaHeart } from 'react-icons/fa';
 
+import Movie from '../../types/movie';
+
 import { Container, Info, Votes, Button } from './styles';
 
 interface MovieInfoProps {
   isHome?: boolean;
+  movie: Movie;
 }
 
-const MovieInfo: FC<MovieInfoProps> = ({ isHome }) => {
+const MovieInfo: FC<MovieInfoProps> = ({ isHome, movie }) => {
   return (
     <Container>
       <img
-        src="https://avatars0.githubusercontent.com/u/67290471?s=460&u=3a40833b6b1e19b81017cb915f8af816f1e51ea7&v=4"
+        src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
         alt="post"
       />
 
       <Info>
         <Votes>
           <FaStar size={24} color="#FF385C" />
-          <span>7.1</span>
+          <span>{movie.vote_count}</span>
         </Votes>
 
-        <h1>Chick Fight</h1>
-        <p>
-          When Anna Wyncomb is introduced to an an underground, all-female fight
-          club in order to turn the mess of her life around, she discovers she
-          is much more personally connected to the history of the club than she
-          could ever imagine.
-        </p>
+        <h1>{movie.title}</h1>
+        <p>{movie.overview}</p>
 
         {isHome ? (
           <Button to="/details">

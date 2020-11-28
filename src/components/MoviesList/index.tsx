@@ -1,58 +1,28 @@
 import { FC } from 'react';
 
-import { Container, Movie } from './styles';
+import Movie from '../../types/movie';
+
+import { Container, Poster } from './styles';
 
 interface MoviesListProps {
   title: string;
+  movies: Movie[];
 }
 
-const MoviesList: FC<MoviesListProps> = ({ title }) => {
+const MoviesList: FC<MoviesListProps> = ({ title, movies }) => {
   return (
     <Container>
       <h2>{title}</h2>
 
       <div>
-        <Movie to="/details">
-          <img
-            src="https://avatars0.githubusercontent.com/u/67290471?s=460&u=3a40833b6b1e19b81017cb915f8af816f1e51ea7&v=4"
-            alt="img"
-          />
-        </Movie>
-
-        <Movie to="/details">
-          <img
-            src="https://avatars0.githubusercontent.com/u/67290471?s=460&u=3a40833b6b1e19b81017cb915f8af816f1e51ea7&v=4"
-            alt="img"
-          />
-        </Movie>
-
-        <Movie to="/details">
-          <img
-            src="https://avatars0.githubusercontent.com/u/67290471?s=460&u=3a40833b6b1e19b81017cb915f8af816f1e51ea7&v=4"
-            alt="img"
-          />
-        </Movie>
-
-        <Movie to="/details">
-          <img
-            src="https://avatars0.githubusercontent.com/u/67290471?s=460&u=3a40833b6b1e19b81017cb915f8af816f1e51ea7&v=4"
-            alt="img"
-          />
-        </Movie>
-
-        <Movie to="/details">
-          <img
-            src="https://avatars0.githubusercontent.com/u/67290471?s=460&u=3a40833b6b1e19b81017cb915f8af816f1e51ea7&v=4"
-            alt="img"
-          />
-        </Movie>
-
-        <Movie to="/details">
-          <img
-            src="https://avatars0.githubusercontent.com/u/67290471?s=460&u=3a40833b6b1e19b81017cb915f8af816f1e51ea7&v=4"
-            alt="img"
-          />
-        </Movie>
+        {movies.map(movie => (
+          <Poster key={movie.id} to="/details">
+            <img
+              src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
+              alt="img"
+            />
+          </Poster>
+        ))}
       </div>
     </Container>
   );
