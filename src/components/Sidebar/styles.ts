@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import colors from '../../styles/colors';
 
 interface TabProps {
-  $active?: boolean;
+  isActive?: boolean;
 }
 
 export const Container = styled.div`
@@ -59,7 +59,7 @@ export const Tab = styled.li<TabProps>`
 
   > a {
     > svg {
-      color: ${({ $active }) => ($active ? colors.primary : colors.grey)};
+      color: ${({ isActive }) => (isActive ? colors.primary : colors.grey)};
       transition: color 0.3s;
 
       &:hover {

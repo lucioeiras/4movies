@@ -17,19 +17,19 @@ const Sidebar: FC<SidebarProps> = ({ page }) => {
       <img src={logo} alt="4Movies" />
 
       <Tabs>
-        <Tab $active={page === 'home'}>
+        <Tab isActive={page === 'home'}>
           <Link to="/">
             <FaHome size={32} />
           </Link>
         </Tab>
 
-        <Tab $active={page === 'search'}>
+        <Tab isActive={page === 'search'}>
           <Link to="/search">
             <FaSearch size={32} />
           </Link>
         </Tab>
 
-        <Tab $active={page === 'favorites'}>
+        <Tab isActive={page === 'favorites'}>
           <Link to="/favorites">
             <FaHeart size={32} />
           </Link>
