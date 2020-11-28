@@ -1,16 +1,17 @@
+import PageContent from '../../components/PageContent';
 import Sidebar from '../../components/Sidebar';
 import MoviesList from '../../components/MoviesList';
 
-import { Container, Content } from './styles';
+import { Container } from './styles';
 
 const Favorites = () => {
   return (
     <Container>
       <Sidebar page="favorites" />
 
-      <Content>
+      <PageContent>
         <MoviesList title="My Favorites" />
-      </Content>
+      </PageContent>
     </Container>
   );
 };
