@@ -23,7 +23,7 @@ export const Container = styled.div`
     bottom: 0;
 
     width: 100%;
-    height: 9.6rem;
+    height: 7.2rem;
 
     flex-direction: row;
     justify-content: center;
@@ -71,6 +71,12 @@ export const Tab = styled.li<TabProps>`
   @media (max-width: 700px) {
     & + li {
       margin-top: 0;
+    }
+
+    > a {
+      > svg {
+        height: 2.4rem;
+      }
     }
   }
 `;

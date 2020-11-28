@@ -32,6 +32,10 @@ export const Container = styled.section`
     > div {
       grid-template-columns: 1fr 1fr;
     }
+
+    > h2 {
+      font-size: 3.2rem;
+    }
   }
 `;
 
