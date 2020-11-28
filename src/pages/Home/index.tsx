@@ -1,17 +1,9 @@
 import { FaStar, FaArrowRight } from 'react-icons/fa';
 
 import Sidebar from '../../components/Sidebar';
+import MoviesList from '../../components/MoviesList';
 
-import {
-  Container,
-  Content,
-  Spotlight,
-  Popular,
-  Votes,
-  Info,
-  ViewMore,
-  Movie,
-} from './styles';
+import { Container, Content, Spotlight, Votes, Info, ViewMore } from './styles';
 
 const Home = () => {
   return (
@@ -46,53 +38,7 @@ const Home = () => {
           </Info>
         </Spotlight>
 
-        <Popular>
-          <h2>Popular Movies</h2>
-
-          <div>
-            <Movie to="/details">
-              <img
-                src="https://avatars0.githubusercontent.com/u/67290471?s=460&u=3a40833b6b1e19b81017cb915f8af816f1e51ea7&v=4"
-                alt="img"
-              />
-            </Movie>
-
-            <Movie to="/details">
-              <img
-                src="https://avatars0.githubusercontent.com/u/67290471?s=460&u=3a40833b6b1e19b81017cb915f8af816f1e51ea7&v=4"
-                alt="img"
-              />
-            </Movie>
-
-            <Movie to="/details">
-              <img
-                src="https://avatars0.githubusercontent.com/u/67290471?s=460&u=3a40833b6b1e19b81017cb915f8af816f1e51ea7&v=4"
-                alt="img"
-              />
-            </Movie>
-
-            <Movie to="/details">
-              <img
-                src="https://avatars0.githubusercontent.com/u/67290471?s=460&u=3a40833b6b1e19b81017cb915f8af816f1e51ea7&v=4"
-                alt="img"
-              />
-            </Movie>
-
-            <Movie to="/details">
-              <img
-                src="https://avatars0.githubusercontent.com/u/67290471?s=460&u=3a40833b6b1e19b81017cb915f8af816f1e51ea7&v=4"
-                alt="img"
-              />
-            </Movie>
-
-            <Movie to="/details">
-              <img
-                src="https://avatars0.githubusercontent.com/u/67290471?s=460&u=3a40833b6b1e19b81017cb915f8af816f1e51ea7&v=4"
-                alt="img"
-              />
-            </Movie>
-          </div>
-        </Popular>
+        <MoviesList title="Popular Movies" />
       </Content>
     </Container>
   );

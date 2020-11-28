@@ -85,6 +85,7 @@ export const Votes = styled.div`
   > span {
     color: ${colors.primary};
     font-size: 2rem;
+    font-weight: 700;
 
     margin-left: 0.8rem;
   }
@@ -155,7 +156,7 @@ export const Movie = styled(Link)`
   transition: transform 0.2s;
 
   &:hover {
-    transform: translateY(-8px);
+    transform: translateY(-0.8rem);
   }
 
   > img {
