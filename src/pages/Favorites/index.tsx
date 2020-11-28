@@ -1,13 +1,16 @@
 import Sidebar from '../../components/Sidebar';
+import MoviesList from '../../components/MoviesList';
 
-import { Container } from './styles';
+import { Container, Content } from './styles';
 
 const Favorites = () => {
   return (
     <Container>
       <Sidebar page="favorites" />
 
-      <h1>Favorites</h1>
+      <Content>
+        <MoviesList title="My Favorites" />
+      </Content>
     </Container>
   );
 };
