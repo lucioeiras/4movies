@@ -29,6 +29,8 @@ export const Container = styled.section`
   }
 
   @media (max-width: 700px) {
+    padding: 2.4rem;
+
     > div {
       grid-template-columns: 1fr 1fr;
     }

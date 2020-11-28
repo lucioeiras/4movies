@@ -27,6 +27,8 @@ export const Reviews = styled.section`
   }
 
   @media (max-width: 700px) {
+    padding: 2.4rem;
+
     > h2 {
       font-size: 3.2rem;
     }

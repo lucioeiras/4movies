@@ -25,7 +25,7 @@ export const Container = styled.section`
 
   @media (max-width: 700px) {
     flex-direction: column;
-    padding: 3.2rem;
+    padding: 2.4rem;
 
     > img {
       width: 100%;
