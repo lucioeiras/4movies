@@ -37,7 +37,13 @@ const Details = () => {
       `https://api.themoviedb.org/3/movie/${movie_id}/reviews?api_key=${process.env.REACT_APP_API_KEY}`,
     )
       .then(response => response.json())
-      .then(response => setReviews(response.results));
+      .then(response =>
+        setReviews([
+          response.results[0],
+          response.results[1],
+          response.results[2],
+        ]),
+      );
 
     fetch(
       `https://api.themoviedb.org/3/movie/${movie_id}/similar?api_key=${process.env.REACT_APP_API_KEY}`,
