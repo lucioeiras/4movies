@@ -16,7 +16,7 @@ const MoviesList: FC<MoviesListProps> = ({ title, movies }) => {
 
       <div>
         {movies.map(movie => (
-          <Poster key={movie.id} to="/details">
+          <Poster key={movie.id} to={`/details/${movie.id}`}>
             <img
               src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
               alt="img"
