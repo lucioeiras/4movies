@@ -1,6 +1,12 @@
 import { createGlobalStyle } from 'styled-components';
 
+import colors from './colors';
+
 export default createGlobalStyle`
+  :root {
+    font-size: 62.5%;
+  }
+
   * {
     margin: 0;
     padding: 0;
@@ -9,7 +15,7 @@ export default createGlobalStyle`
   }
 
   body {
-    background: #f5f5f5;
+    background: ${colors.background};
   }
 
   body, input, button, textarea {
@@ -18,5 +24,11 @@ export default createGlobalStyle`
 
   button {
     cursor: pointer;
+  }
+
+  @media (max-width: 700px) {
+    :root {
+      font-size: 60%;
+    }
   }
 `;

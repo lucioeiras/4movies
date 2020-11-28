@@ -14,9 +14,7 @@ interface SidebarProps {
 const Sidebar: FC<SidebarProps> = ({ page }) => {
   return (
     <Container>
-      <div>
-        <img src={logo} alt="4Movies" />
-      </div>
+      <img src={logo} alt="4Movies" />
 
       <Tabs>
         <Tab $active={page === 'home'}>
