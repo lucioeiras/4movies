@@ -7,7 +7,7 @@ export const Container = styled.section`
   width: 100%;
   max-width: 112rem;
 
-  border-radius: 2.4rem;
+  border-radius: 0.5rem;
   background: ${colors.card};
 
   padding: 4.8rem;
@@ -48,6 +48,6 @@ export const Poster = styled(Link)`
 
   > img {
     width: 100%;
-    border-radius: 1.6rem;
+    border-radius: 0.5rem;
   }
 `;

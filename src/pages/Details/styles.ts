@@ -11,7 +11,7 @@ export const Reviews = styled.section`
   width: 100%;
   max-width: 112rem;
 
-  border-radius: 2.4rem;
+  border-radius: 0.5rem;
   background: ${colors.card};
 
   padding: 4.8rem;
@@ -27,8 +27,8 @@ export const Reviews = styled.section`
   }
 
   @media (max-width: 700px) {
-    > div {
-      grid-template-columns: 1fr 1fr;
+    > h2 {
+      font-size: 3.2rem;
     }
   }
 `;

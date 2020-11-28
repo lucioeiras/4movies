@@ -11,7 +11,7 @@ export const Container = styled.section`
   display: flex;
   align-items: center;
 
-  border-radius: 2.4rem;
+  border-radius: 0.5rem;
   background: ${colors.card};
 
   padding: 4.8rem;
@@ -20,7 +20,7 @@ export const Container = styled.section`
     width: 24.6rem;
     height: 36.9rem;
 
-    border-radius: 2.4rem;
+    border-radius: 0.5rem;
   }
 
   @media (max-width: 700px) {

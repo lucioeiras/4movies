@@ -18,7 +18,7 @@ export const Form = styled.form`
     width: 100%;
 
     border: none;
-    border-radius: 0.8rem;
+    border-radius: 0.5rem;
     background: ${colors.card};
 
     color: ${colors.text};
@@ -37,12 +37,12 @@ export const Form = styled.form`
     justify-content: center;
 
     border: none;
-    border-radius: 8px;
+    border-radius: 0.5rem;
 
     background: ${colors.primary};
 
-    padding: 20px;
-    margin-left: 16px;
+    padding: 2rem;
+    margin-left: 1.6rem;
 
     transition: background-color 0.2s;
 
