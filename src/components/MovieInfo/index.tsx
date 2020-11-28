@@ -21,19 +21,19 @@ const MovieInfo: FC<MovieInfoProps> = ({ isHome, movie }) => {
       <Info>
         <Votes>
           <FaStar size={24} color="#FF385C" />
-          <span>{movie.vote_count}</span>
+          <span>{movie.vote_average}</span>
         </Votes>
 
         <h1>{movie.title}</h1>
         <p>{movie.overview}</p>
 
         {isHome ? (
-          <Button to="/details">
+          <Button to={`/details/${movie.id}`}>
             View more
             <FaArrowRight size={16} color="#fff" />
           </Button>
         ) : (
-          <Button to="/details">
+          <Button to={`/details/${movie.id}`}>
             Add to your favorites
             <FaHeart size={16} color="#fff" />
           </Button>
