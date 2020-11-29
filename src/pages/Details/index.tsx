@@ -11,6 +11,7 @@ import MoviesList from '../../components/MoviesList';
 import { Container, Reviews, Review } from './styles';
 
 interface ReviewType {
+  id: number;
   author: string;
   content: string;
 }
@@ -59,7 +60,7 @@ const Details = () => {
 
             <div>
               {reviews.map(review => (
-                <Review>
+                <Review key={review.id}>
                   <h3>{review.author}</h3>
                   <p>{review.content}</p>
                 </Review>
