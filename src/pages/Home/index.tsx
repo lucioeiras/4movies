@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 import Movie from '../../types/movie';
 
@@ -12,6 +12,23 @@ import { Container } from './styles';
 const Home = () => {
   const [spotlight, setSpotlight] = useState<Movie>();
   const [popularMovies, setPopularMovies] = useState<Movie[]>();
+  let nextPage = 2;
+
+  const loaderRef = useRef<HTMLDivElement>(null);
+
+  function handleLoadMoreMovies() {
+    fetch(
+      `https://api.themoviedb.org/3/movie/popular?page=${nextPage}&api_key=${process.env.REACT_APP_API_KEY}`,
+    )
+      .then(response => response.json())
+      .then(response => {
+        nextPage = response.page + 1;
+
+        setPopularMovies(
+          oldMovies => oldMovies && [...oldMovies, ...response.results],
+        );
+      });
+  }
 
   useEffect(() => {
     fetch(
@@ -19,13 +36,37 @@ const Home = () => {
     )
       .then(response => response.json())
       .then(response => {
-        setSpotlight(response.results[0]);
+        const spotlightMovie = response.results[0];
+
+        setSpotlight(spotlightMovie);
         setPopularMovies(
           response.results.filter(
-            (result: Movie, index: number) => index !== 0,
+            (result: Movie) => result.id !== spotlightMovie.id,
           ),
         );
       });
+  }, []);
+
+  useEffect(() => {
+    const options = {
+      root: null,
+      rootMargin: '20px',
+      threshold: 1.0,
+    };
+
+    const handleObserver = (entities: any) => {
+      const target = entities[0];
+
+      if (target.isIntersecting) {
+        handleLoadMoreMovies();
+      }
+    };
+
+    const observer = new IntersectionObserver(handleObserver, options);
+
+    if (loaderRef.current) {
+      observer.observe(loaderRef.current);
+    }
   }, []);
 
   return (
@@ -38,6 +79,8 @@ const Home = () => {
         {popularMovies && (
           <MoviesList title="Popular Movies" movies={popularMovies} />
         )}
+
+        {spotlight && popularMovies && <div ref={loaderRef} />}
       </PageContent>
     </Container>
   );
