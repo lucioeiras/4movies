@@ -71,7 +71,7 @@ export const Votes = styled.div`
   }
 `;
 
-export const Button = styled(Link)`
+export const ViewMore = styled(Link)`
   width: fit-content;
   height: 4.8rem;
 
@@ -97,5 +97,36 @@ export const Button = styled(Link)`
 
   > svg {
     margin-left: 1.6rem;
+  }
+`;
+
+export const Favorite = styled.button`
+  width: fit-content;
+  height: 4.8rem;
+
+  display: flex;
+  align-items: center;
+
+  border: none;
+  border-radius: 0.5rem;
+
+  background: ${colors.primary};
+
+  color: ${colors.white};
+  font-size: 1.6rem;
+  font-weight: bold;
+  text-decoration: none;
+
+  padding: 2rem;
+  margin-top: 3.2rem;
+
+  transition: background-color 0.2s;
+
+  &:hover {
+    background: ${shade(0.2, colors.primary)};
+  }
+
+  > svg {
+    margin-right: 1.6rem;
   }
 `;

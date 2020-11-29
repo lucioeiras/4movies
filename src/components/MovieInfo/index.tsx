@@ -1,9 +1,10 @@
-import { FC } from 'react';
-import { FaStar, FaArrowRight, FaHeart } from 'react-icons/fa';
+import { FC, useCallback, useState } from 'react';
+import { FaStar, FaArrowRight, FaHeart, FaTimesCircle } from 'react-icons/fa';
 
+import useFavorites from '../../hooks/useFavorites';
 import Movie from '../../types/movie';
 
-import { Container, Info, Votes, Button } from './styles';
+import { Container, Info, Votes, ViewMore, Favorite } from './styles';
 
 interface MovieInfoProps {
   isHome?: boolean;
@@ -11,6 +12,28 @@ interface MovieInfoProps {
 }
 
 const MovieInfo: FC<MovieInfoProps> = ({ isHome, movie }) => {
+  const { addMovie, getMovieById, removeMovie } = useFavorites();
+
+  const [isFavorite, setIsFavorite] = useState(() => {
+    const searchMovie = getMovieById(movie.id);
+
+    if (searchMovie) {
+      return true;
+    }
+
+    return false;
+  });
+
+  const handleToogleFavorite = useCallback((selectedMovie: Movie) => {
+    if (isFavorite) {
+      removeMovie(selectedMovie.id);
+      setIsFavorite(false);
+    } else {
+      addMovie(selectedMovie);
+      setIsFavorite(true);
+    }
+  }, []);
+
   return (
     <Container>
       <img
@@ -28,15 +51,24 @@ const MovieInfo: FC<MovieInfoProps> = ({ isHome, movie }) => {
         <p>{movie.overview}</p>
 
         {isHome ? (
-          <Button to={`/details/${movie.id}`}>
+          <ViewMore to={`/details/${movie.id}`}>
             View more
             <FaArrowRight size={16} color="#fff" />
-          </Button>
+          </ViewMore>
         ) : (
-          <Button to={`/details/${movie.id}`}>
-            Add to your favorites
-            <FaHeart size={16} color="#fff" />
-          </Button>
+          <Favorite type="button" onClick={() => handleToogleFavorite(movie)}>
+            {isFavorite ? (
+              <>
+                <FaTimesCircle size={16} color="#fff" />
+                <p>Remove from favorites</p>
+              </>
+            ) : (
+              <>
+                <FaHeart size={16} color="#fff" />
+                <p>Add to your favorites</p>
+              </>
+            )}
+          </Favorite>
         )}
       </Info>
     </Container>
