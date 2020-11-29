@@ -80,7 +80,9 @@ const Home = () => {
           <MoviesList title="Popular Movies" movies={popularMovies} />
         )}
 
-        {spotlight && popularMovies && <div ref={loaderRef} />}
+        {spotlight && popularMovies && (
+          <div ref={loaderRef}>Eu mereço essa vaga vai :)</div>
+        )}
       </PageContent>
     </Container>
   );
