@@ -44,7 +44,7 @@ const Details = () => {
     )
       .then(response => response.json())
       .then(response => setSimilarMovies(response.results));
-  }, []);
+  }, [movie_id]);
 
   return (
     <Container>
