@@ -36,6 +36,10 @@ export const Container = styled.section`
     > h2 {
       font-size: 3.2rem;
     }
+
+    > h3 {
+      font-size: 2.4rem;
+    }
   }
 `;
 

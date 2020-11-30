@@ -8,12 +8,26 @@ import SideBar from '../../components/SideBar';
 import MovieInfo from '../../components/MovieInfo';
 import MoviesList from '../../components/MoviesList';
 
-import { Container, ReviewsContainer, Review } from './styles';
+import defaultActorImage from '../../assets/not-found.png';
 
-interface ReviewType {
+import {
+  Container,
+  CastContainer,
+  Actor,
+  ReviewsContainer,
+  Review,
+} from './styles';
+
+interface ReviewTypes {
   id: number;
   author: string;
   content: string;
+}
+
+interface ActorTypes {
+  id: number;
+  name: string;
+  profile_path: string;
 }
 
 interface DetailsRouteParams {
@@ -24,7 +38,8 @@ const Details = () => {
   const { movie_id } = useParams<DetailsRouteParams>();
 
   const [movie, setMovie] = useState<Movie>();
-  const [reviews, setReviews] = useState<ReviewType[]>();
+  const [actors, setActors] = useState<ActorTypes[]>();
+  const [reviews, setReviews] = useState<ReviewTypes[]>();
   const [similarMovies, setSimilarMovies] = useState<Movie[]>();
 
   useEffect(() => {
@@ -33,6 +48,12 @@ const Details = () => {
     )
       .then(response => response.json())
       .then(response => setMovie(response));
+
+    fetch(
+      `https://api.themoviedb.org/3/movie/${movie_id}/credits?api_key=${process.env.REACT_APP_API_KEY}`,
+    )
+      .then(response => response.json())
+      .then(response => setActors(response.cast));
 
     fetch(
       `https://api.themoviedb.org/3/movie/${movie_id}/reviews?api_key=${process.env.REACT_APP_API_KEY}`,
@@ -53,6 +74,32 @@ const Details = () => {
 
       <PageContent>
         {movie && <MovieInfo movie={movie} />}
+
+        {actors && (
+          <CastContainer>
+            <h2>Cast</h2>
+
+            {actors[0] ? (
+              <div>
+                {actors.map(actor => (
+                  <Actor key={actor.id}>
+                    <img
+                      src={
+                        actor.profile_path
+                          ? `https://image.tmdb.org/t/p/original${actor.profile_path}`
+                          : defaultActorImage
+                      }
+                      alt="img"
+                    />
+                    <h3>{actor.name}</h3>
+                  </Actor>
+                ))}
+              </div>
+            ) : (
+              <h3>This movie has no actors.</h3>
+            )}
+          </CastContainer>
+        )}
 
         {reviews && (
           <ReviewsContainer>
