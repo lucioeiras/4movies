@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 
 import Movie from '../../types/movie';
 
@@ -12,23 +12,29 @@ import { Container } from './styles';
 const Home = () => {
   const [spotlight, setSpotlight] = useState<Movie>();
   const [popularMovies, setPopularMovies] = useState<Movie[]>();
-  let nextPage = 2;
 
   const loaderRef = useRef<HTMLDivElement>(null);
 
-  function handleLoadMoreMovies() {
-    fetch(
-      `https://api.themoviedb.org/3/movie/popular?page=${nextPage}&api_key=${process.env.REACT_APP_API_KEY}`,
-    )
-      .then(response => response.json())
-      .then(response => {
-        nextPage = response.page + 1;
+  let nextPage = 2;
 
-        setPopularMovies(
-          oldMovies => oldMovies && [...oldMovies, ...response.results],
-        );
-      });
-  }
+  const handleLoadMorePosts = useCallback(
+    (entities: any) => {
+      if (entities[0].isIntersecting) {
+        fetch(
+          `https://api.themoviedb.org/3/movie/popular?page=${nextPage}&api_key=${process.env.REACT_APP_API_KEY}`,
+        )
+          .then(response => response.json())
+          .then(response => {
+            setPopularMovies(
+              oldMovies => oldMovies && [...oldMovies, ...response.results],
+            );
+          });
+
+        nextPage += 1;
+      }
+    },
+    [nextPage],
+  );
 
   useEffect(() => {
     fetch(
@@ -39,11 +45,7 @@ const Home = () => {
         const spotlightMovie = response.results[0];
 
         setSpotlight(spotlightMovie);
-        setPopularMovies(
-          response.results.filter(
-            (result: Movie) => result.id !== spotlightMovie.id,
-          ),
-        );
+        setPopularMovies(response.results);
       });
   }, []);
 
@@ -54,20 +56,12 @@ const Home = () => {
       threshold: 1.0,
     };
 
-    const handleObserver = (entities: any) => {
-      const target = entities[0];
-
-      if (target.isIntersecting) {
-        handleLoadMoreMovies();
-      }
-    };
-
-    const observer = new IntersectionObserver(handleObserver, options);
+    const observer = new IntersectionObserver(handleLoadMorePosts, options);
 
     if (loaderRef.current) {
       observer.observe(loaderRef.current);
     }
-  }, []);
+  }, [popularMovies]);
 
   return (
     <Container>
@@ -80,9 +74,7 @@ const Home = () => {
           <MoviesList title="Popular Movies" movies={popularMovies} />
         )}
 
-        {spotlight && popularMovies && (
-          <div ref={loaderRef}>Eu mereço essa vaga vai :)</div>
-        )}
+        {popularMovies && <div ref={loaderRef} />}
       </PageContent>
     </Container>
   );
