@@ -8,7 +8,7 @@ export const Container = styled.div`
   display: flex;
 `;
 
-export const Form = styled.form`
+export const SearchForm = styled.form`
   width: 100%;
   max-width: 112rem;
 

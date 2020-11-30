@@ -7,7 +7,7 @@ export const Container = styled.div`
   display: flex;
 `;
 
-export const Reviews = styled.section`
+export const ReviewsContainer = styled.section`
   width: 100%;
   max-width: 112rem;
 
@@ -20,6 +20,14 @@ export const Reviews = styled.section`
   > h2 {
     color: ${colors.primary};
     font-size: 4rem;
+  }
+
+  > h3 {
+    color: ${colors.text};
+    font-size: 32px;
+    font-weight: 300;
+
+    margin-top: 16px;
   }
 
   > div {

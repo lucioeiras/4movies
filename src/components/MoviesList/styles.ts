@@ -18,14 +18,12 @@ export const Container = styled.section`
     font-size: 4rem;
   }
 
-  > div {
-    width: 100%;
+  > h3 {
+    color: ${colors.text};
+    font-size: 32px;
+    font-weight: 300;
 
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-gap: 2.4rem;
-
-    margin-top: 3.2rem;
+    margin-top: 16px;
   }
 
   @media (max-width: 700px) {
@@ -39,6 +37,16 @@ export const Container = styled.section`
       font-size: 3.2rem;
     }
   }
+`;
+
+export const MoviesGrid = styled.div`
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 2.4rem;
+
+  margin-top: 3.2rem;
 `;
 
 export const Poster = styled(Link)`

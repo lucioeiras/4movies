@@ -4,11 +4,11 @@ import { useParams } from 'react-router-dom';
 import Movie from '../../types/movie';
 
 import PageContent from '../../components/PageContent';
-import Sidebar from '../../components/Sidebar';
+import SideBar from '../../components/SideBar';
 import MovieInfo from '../../components/MovieInfo';
 import MoviesList from '../../components/MoviesList';
 
-import { Container, Reviews, Review } from './styles';
+import { Container, ReviewsContainer, Review } from './styles';
 
 interface ReviewType {
   id: number;
@@ -49,28 +49,36 @@ const Details = () => {
 
   return (
     <Container>
-      <Sidebar />
+      <SideBar />
 
       <PageContent>
         {movie && <MovieInfo movie={movie} />}
 
         {reviews && (
-          <Reviews>
+          <ReviewsContainer>
             <h2>Reviews</h2>
 
-            <div>
-              {reviews.map(review => (
-                <Review key={review.id}>
-                  <h3>{review.author}</h3>
-                  <p>{review.content}</p>
-                </Review>
-              ))}
-            </div>
-          </Reviews>
+            {reviews[0] ? (
+              <div>
+                {reviews.map(review => (
+                  <Review key={review.id}>
+                    <h3>{review.author}</h3>
+                    <p>{review.content}</p>
+                  </Review>
+                ))}
+              </div>
+            ) : (
+              <h3>This movie has no reviews yet.</h3>
+            )}
+          </ReviewsContainer>
         )}
 
         {similarMovies && (
-          <MoviesList title="Similar Movies" movies={similarMovies} />
+          <MoviesList
+            title="Similar Movies"
+            movies={similarMovies}
+            notFound="This film has no recommendations."
+          />
         )}
       </PageContent>
     </Container>

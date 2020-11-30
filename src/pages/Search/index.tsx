@@ -4,10 +4,10 @@ import { FaSearch } from 'react-icons/fa';
 import Movie from '../../types/movie';
 
 import PageContent from '../../components/PageContent';
-import Sidebar from '../../components/Sidebar';
+import SideBar from '../../components/SideBar';
 import MoviesList from '../../components/MoviesList';
 
-import { Container, Form } from './styles';
+import { Container, SearchForm } from './styles';
 
 const Search = () => {
   const [results, setResults] = useState<Movie[]>();
@@ -30,10 +30,10 @@ const Search = () => {
 
   return (
     <Container>
-      <Sidebar page="search" />
+      <SideBar page="search" />
 
       <PageContent>
-        <Form onSubmit={searchMovies}>
+        <SearchForm onSubmit={searchMovies}>
           <input
             value={query}
             onChange={e => setQuery(e.target.value)}
@@ -43,9 +43,15 @@ const Search = () => {
           <button type="submit">
             <FaSearch size={20} />
           </button>
-        </Form>
+        </SearchForm>
 
-        {results && <MoviesList title="Results" movies={results} />}
+        {results && (
+          <MoviesList
+            title="Results"
+            movies={results}
+            notFound="No results found. Try another thing."
+          />
+        )}
       </PageContent>
     </Container>
   );

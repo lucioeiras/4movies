@@ -34,7 +34,7 @@ export const Container = styled.div`
   }
 `;
 
-export const Tabs = styled.ul`
+export const TabsContainer = styled.ul`
   list-style: none;
 
   display: flex;

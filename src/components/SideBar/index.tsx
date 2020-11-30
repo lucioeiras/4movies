@@ -5,18 +5,18 @@ import { FaHome, FaSearch, FaHeart } from 'react-icons/fa';
 
 import logo from '../../assets/logo.svg';
 
-import { Container, Tabs, Tab } from './styles';
+import { Container, TabsContainer, Tab } from './styles';
 
-interface SidebarProps {
+interface SideBarProps {
   page?: string;
 }
 
-const Sidebar: FC<SidebarProps> = ({ page }) => {
+const SideBar: FC<SideBarProps> = ({ page }) => {
   return (
     <Container>
       <img src={logo} alt="4Movies" />
 
-      <Tabs>
+      <TabsContainer>
         <Tab isActive={page === 'home'}>
           <Link to="/">
             <FaHome size={32} />
@@ -34,9 +34,9 @@ const Sidebar: FC<SidebarProps> = ({ page }) => {
             <FaHeart size={32} />
           </Link>
         </Tab>
-      </Tabs>
+      </TabsContainer>
     </Container>
   );
 };
 
-export default Sidebar;
+export default SideBar;

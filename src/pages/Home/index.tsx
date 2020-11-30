@@ -3,7 +3,7 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import Movie from '../../types/movie';
 
 import PageContent from '../../components/PageContent';
-import Sidebar from '../../components/Sidebar';
+import SideBar from '../../components/SideBar';
 import MovieInfo from '../../components/MovieInfo';
 import MoviesList from '../../components/MoviesList';
 
@@ -65,13 +65,17 @@ const Home = () => {
 
   return (
     <Container>
-      <Sidebar page="home" />
+      <SideBar page="home" />
 
       <PageContent>
         {spotlight && <MovieInfo isHome movie={spotlight} />}
 
         {popularMovies && (
-          <MoviesList title="Popular Movies" movies={popularMovies} />
+          <MoviesList
+            title="Popular Movies"
+            movies={popularMovies}
+            notFound="We couldn't find anything"
+          />
         )}
 
         {popularMovies && <div ref={loaderRef} />}
